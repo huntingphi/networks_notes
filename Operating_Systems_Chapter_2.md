@@ -278,7 +278,7 @@ Detriments: Performance overhead of user space to kernel space communication
 
   Windows is mostly monolithic, but retains behaviours of microkernels including providing support for separate subsystems (known as *personalities*) that run as user-mode processes
 
-  MacOS uses a  hybrid structure. As shown below it uses a layered system with Aqua UI , and a set of application environments and services such as the Cocoa programming environment. This is a kernel consisting of Mach microkernel and BSD UNIX parts, plus I/O kit and dynamically loadable modules - called kernel extensions. See below image.
+  MacOS uses a  hybrid structure. As shown below it uses a layered system with Aqua UI , and a set of application environments and services such as the Cocoa programming environment. Below these layers is the *kernel environment*. This is a kernel consisting of Mach microkernel and BSD UNIX parts, plus I/O kit and dynamically loadable modules - called kernel extensions. See below image.
 
   ![macos_kernel](/home/minad/Pictures/macos_kernel.png)
 
@@ -290,21 +290,21 @@ Detriments: Performance overhead of user space to kernel space communication
 
   Media services layer is for graphics audio and video.
 
-  Core services provides cloud computing, databases
+  Core services provides a variety of features such as cloud computing and databases.
 
-  Core OS is based on MacOS kernel
+  The Core OS is based on MacOS kernel
 
   #### Android
 
-  Android OS is developed by Open Handset Alliance (mostly Google) and is Open Source. Its similar to iOS and based on the Linux Kernel but is modified. It provides process, memory, device-driver management and adds power management.
+  Android OS is developed by Open Handset Alliance (mostly Google) and is Open Source. Its similar to iOS in  that  it  is  a  layered  stack  of  software  that provides a rich set of frameworks for developing mobile applications and based on the Linux Kernel but is modified. Linux provides process, memory, device-driver management and the android kernel has been expanded to add power management.
 
   Runtime environment includes set of core libraries and Dalvik virtual machine. Apps are developed in Java using the Android API. Java class files are compiled to Java bytecode then translated to an executable that runs in the Dalvik VM
 
-  Libraries include frameworks for web browser (webkit), database (SQLite), multimedia, smaller libc(?)
+  Libraries include frameworks for web browser (webkit), database (SQLite), multimedia, and libc. The libc library is similar to the standard C library but is much smaller and has been designed for the slower CPUs that characterize mobile devices.
 
   ![android_architecture](/home/minad/Pictures/android_architecture.png)
 
-  #### Operating System Debugging
+### Operating System Debugging
 
   Debugging: Finding and fixing errors or bugs. OS generates log files containing error information.
 
@@ -316,13 +316,13 @@ Detriments: Performance overhead of user space to kernel space communication
 
   **Kernighan's Law**: "Debugging is twice as hard as writing the code in the first place. Therefore if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it"
 
-  #### Performance Tuning
+### Performance Tuning
 
   Improve performance by removing bottlenecks.
 
   OS must provide means of computing and displaying measures of system behaviour. Eg, 'top' in linux or task manager in windows.
 
-  #### Operating System Generation
+### Operating System Generation
 
   Operating systems are designed to run on any class of machines; the system must be configured for each specific computer site.
 
@@ -332,9 +332,11 @@ Detriments: Performance overhead of user space to kernel space communication
 
   #### System Boot
 
-  When power initialised on a system, execution starts at a fixed memory location. This is where the firmware is found and used to hold initial boot code.
+  Once an operating system has been generated, it is made available for use by the hardware.
 
-  Operating system must be made available to hardware so that hardware can start it.
+  Booting: The process of starting a computer by loading the kernel.
+
+  When a CPU receives a reset event — for instance, when it is powered up or rebooted — the instruction register is  loaded with a predefined memory location and the execution starts there.
 
   A small piece of code - the bootstrap loader - stored in ROM or EEPROM locates the kernel, loads it into memory, and starts it.
 
